@@ -1,0 +1,1 @@
+export const baseUrl = "http://161.35.143.238:8000/gbauer/";
