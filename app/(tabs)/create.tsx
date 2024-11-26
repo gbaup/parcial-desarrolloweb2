@@ -3,20 +3,27 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import {ThemedText} from '@/components/ThemedText';
 import {ThemedView} from '@/components/ThemedView';
 import {IconSymbol} from '@/components/ui/IconSymbol';
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {Button} from 'react-native-paper';
 import {createDest} from "@/api/apiUtils";
+import {DestinosContext} from "@/context/destinosContext";
+import {router} from "expo-router";
 
 
 export default function TabTwoScreen() {
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [difficulty, setDifficulty] = useState('')
-
+    const {destinos, setDestinos} = useContext(DestinosContext);
 
     const handleCreateDestination = () => {
         createDest(name, description, difficulty)
-    }
+            .then(newDestino => {
+                setDestinos([...destinos, newDestino]);
+                router.replace("/")
+            })
+            .catch(error => console.error("Error al crear destino:", error));
+    };
 
 
     return (

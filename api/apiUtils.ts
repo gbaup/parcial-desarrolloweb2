@@ -2,7 +2,7 @@ import {baseUrl} from "@/constants/Utils";
 import axios from "axios";
 import {Destination} from "@/interfaces/destination";
 
-export const addFav = async (id: number, favourite: boolean) => {
+export const addFav = async (id: string, favourite: boolean) => {
     const url = baseUrl + id
     console.log(url)
     try {
@@ -57,5 +57,15 @@ export const editDest = async (id: number, name: string, description: string, di
         } catch (error) {
             console.error("Error al editar destino:", error)
         }
+    }
+}
+
+export const deleteDest = async (id: number) => {
+    const url = baseUrl + id
+    try {
+        await axios.delete(url)
+        console.log("Destino eliminado:", id)
+    } catch (error) {
+        console.error("Error al eliminar destino:", error)
     }
 }

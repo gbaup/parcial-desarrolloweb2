@@ -36,7 +36,7 @@ export default function TabLayout() {
             <Tabs.Screen
                 name="create"
                 options={{
-                    title: 'Crear destino',
+                    title: 'Nuevo destino',
                     tabBarIcon: ({color}) => <AntDesign name="pluscircleo" size={24} color="black"/>,
                 }}
             />
